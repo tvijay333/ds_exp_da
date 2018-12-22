@@ -1,0 +1,11 @@
+# laod data 
+headers <- names(read.csv(file="household_power_consumption.txt",sep=";",nrows=1))
+Data_org <- read.csv(file="household_power_consumption.txt",header = TRUE,sep=";",skip=66637,nrows=2880,col.names =headers)
+Data_org$Date <- as.Date(Data_org$Date,format="%Y/%m/%d")
+plot(Data_org$Global_active_power,type='l',ylab="active power",axes=FALSE,ann=FALSE)
+axis(1, at=c(1,1440,2880), lab=c("Thu", "Fri", "Sat"))
+axis(2)
+box()
+title(ylab = "Global Active power (Kilowatts)")
+dev.copy(png,'Plot2.png')
+dev.off()
